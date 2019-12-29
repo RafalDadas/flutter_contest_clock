@@ -2,7 +2,10 @@ import 'dart:async';
 
 import 'package:flutter_clock_helper/model.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+
+import 'diode_widget.dart';
 
 class Clock extends StatefulWidget {
   const Clock(this.model);
@@ -42,15 +45,30 @@ class _ClockState extends State<Clock> {
     final minute = DateFormat('mm').format(_now);
     final second = DateFormat('ss').format(_now);
     return Container(
-      //color: Colors.black,
+      decoration: BoxDecoration(color: Colors.grey),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            '$hour : $minute : $second',
-            style: TextStyle(
-              fontSize: MediaQuery.of(context).size.width / 7,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              HourDiodes(_now.hour),
+              MinuteSecondDiodes(_now.minute),
+              MinuteSecondDiodes(_now.second),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              Text(
+                '$hour : $minute : $second',
+                style: GoogleFonts.audiowide(
+                  fontSize: MediaQuery.of(context).size.width / 15,
+                ),
+              ),
+            ],
           ),
         ],
       ),
