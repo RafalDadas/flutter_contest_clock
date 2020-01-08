@@ -45,10 +45,14 @@ class _ClockState extends State<Clock> {
     final minute = DateFormat('mm').format(_now);
     final second = DateFormat('ss').format(_now);
     return Container(
-      decoration: BoxDecoration(color: Colors.grey),
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/jeremy-thomas-unsplash.jpg'),
+        ),
+      ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -60,12 +64,11 @@ class _ClockState extends State<Clock> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
               Text(
                 '$hour : $minute : $second',
                 style: GoogleFonts.audiowide(
-                  fontSize: MediaQuery.of(context).size.width / 15,
+                  fontSize: MediaQuery.of(context).size.width / 14,
                 ),
               ),
             ],
