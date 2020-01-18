@@ -11,10 +11,15 @@ class Diode extends StatelessWidget {
       margin: EdgeInsets.all(2),
       height: 24,
       width: 24,
-      decoration: BoxDecoration(
-        color: isOn ? Colors.white : Colors.black,
-        borderRadius: BorderRadius.circular(32),
-      ),
+      decoration: Theme.of(context).brightness == Brightness.light
+          ? BoxDecoration(
+              color: isOn ? Colors.white : Colors.black,
+              borderRadius: BorderRadius.circular(32),
+            )
+          : BoxDecoration(
+              color: isOn ? Colors.white : Colors.white10,
+              borderRadius: BorderRadius.circular(32),
+            ),
     );
   }
 }
