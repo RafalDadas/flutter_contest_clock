@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 
 import 'src/clock.dart';
 
-// TODO: Import Google Fonts
-
 void main() {
   if (!kIsWeb && Platform.isMacOS) {
     debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;

@@ -60,7 +60,7 @@ class _ClockState extends State<Clock> {
                 image: AssetImage('assets/jeremy-thomas-unsplash.jpg'),
               ),
             )
-          : BoxDecoration(color: Colors.black54),
+          : BoxDecoration(color: Colors.black),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.end,
