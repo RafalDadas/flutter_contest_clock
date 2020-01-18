@@ -7,6 +7,12 @@ import 'package:intl/intl.dart';
 
 import 'diode_widget.dart';
 
+/*
+Diodes represent binary clock. You can read time solely from looking at the 
+diodes, digital is a helper. For a quick tutorial on how to decode it, visit:
+https://en.wikipedia.org/wiki/Binary_clock
+*/
+
 class Clock extends StatefulWidget {
   const Clock(this.model);
 
@@ -44,12 +50,17 @@ class _ClockState extends State<Clock> {
         DateFormat(widget.model.is24HourFormat ? 'HH' : 'hh').format(_now);
     final minute = DateFormat('mm').format(_now);
     final second = DateFormat('ss').format(_now);
+    final date = '${_now.day} / ${_now.month} / ${_now.year}';
+    final location = widget.model.location;
+    final temperature = widget.model.temperatureString;
     return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/jeremy-thomas-unsplash.jpg'),
-        ),
-      ),
+      decoration: Theme.of(context).brightness == Brightness.light
+          ? BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/jeremy-thomas-unsplash.jpg'),
+              ),
+            )
+          : BoxDecoration(color: Colors.black54),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -57,19 +68,45 @@ class _ClockState extends State<Clock> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              HourDiodes(_now.hour),
+              HourDiodes(int.parse(hour)),
               MinuteSecondDiodes(_now.minute),
               MinuteSecondDiodes(_now.second),
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                '$hour : $minute : $second',
-                style: GoogleFonts.audiowide(
-                  fontSize: MediaQuery.of(context).size.width / 14,
-                ),
+          Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    '$location, $temperature',
+                    style: GoogleFonts.audiowide(
+                      fontSize: MediaQuery.of(context).size.width / 48,
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    '$hour : $minute : $second',
+                    style: GoogleFonts.audiowide(
+                      fontSize: MediaQuery.of(context).size.width / 16,
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    '$date',
+                    style: GoogleFonts.audiowide(
+                      fontSize: MediaQuery.of(context).size.width / 32,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
